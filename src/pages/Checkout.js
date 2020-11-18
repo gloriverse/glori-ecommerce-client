@@ -126,16 +126,32 @@ function Checkout({ history }) {
 
   const createCashOrder = () => {
     createCashOrderForUser(user.token, cod, couponTrueOrFalse).then((res) => {
-      console.log("User Cash ordre created", res.data);
-      //empty cart from redux
+      console.log("USER CASH ORDER CREATED RES ", res);
+      // empty cart form redux, local Storage, reset coupon, reset COD, redirect
       if (res.data.ok) {
-        if (typeof window !== undefined) localStorage.removeItem("cart");
-        dispatch({ type: "ADD_TO_CART", payload: [] });
-        dispatch({ type: "COUPON_APPLIED", payload: false });
+        // empty local storage
+        if (typeof window !== "undefined") localStorage.removeItem("cart");
+        // empty redux cart
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: [],
+        });
+        // empty redux coupon
+        dispatch({
+          type: "COUPON_APPLIED",
+          payload: false,
+        });
+        // empty redux COD
+        dispatch({
+          type: "COD",
+          payload: false,
+        });
+        // mepty cart from backend
         emptyUserCart(user.token);
+        // redirect
         setTimeout(() => {
           history.push("/user/history");
-        }, 3000);
+        }, 1000);
       }
     });
   };

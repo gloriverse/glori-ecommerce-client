@@ -24,6 +24,7 @@ function History() {
 
   const loadUserOrders = () =>
     getUserOrders(user.token).then((res) => {
+      console.log("GETTING ORDERS", res.data);
       setOrders(res.data);
     });
 
