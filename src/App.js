@@ -101,6 +101,7 @@ function App() {
     //     </div>
     //   }
     // >
+    <>
       <SideDrawer />
       <Header />
       <ToastContainer />
@@ -134,6 +135,7 @@ function App() {
         />
         <AdminRoute path="/admin/coupon" component={Coupon} exact />
       </Switch>
+    </>
     // </Suspense>
   );
 }
